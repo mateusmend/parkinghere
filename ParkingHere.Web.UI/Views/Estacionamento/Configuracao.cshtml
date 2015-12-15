@@ -1,0 +1,50 @@
+﻿@model ParkingHere.Dominio.Estacionamento
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <h3>Configurações do Sistema</h3>
+</div>
+
+<br />
+
+<div class="btn-toolbar col-md-12" role="toolbar">
+    <div class="btn-group" role="group">
+       @Html.ActionLink("Editar Estacionamento", "Edit", new { id = @Model.Id }, new { @class = "btn btn-info btn-lg box-shadow", data_toggle = "tooltip", data_placement = "top", title = "Deseja editar informações? Clique aqui!" }) 
+    </div>
+    <div class="btn-group" role="toolbar">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn-group btn btn-danger btn-lg box-shadow" data-target="#myModal" data-toggle="modal">Excluir Estacionamento</button>
+        }
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="col-md-12">
+    @Html.ActionLink("Voltar", "Index", "Estacionamento", new { }, new { @class = "btn btn-primary box-shadow" })
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmação de Exclusão</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Deseja excluir o estacionamento @Model.Nome?</h4>
+            </div>
+            <div class="modal-footer">
+                <input id="confirmarExclusao" type="button" class="btn btn-danger box-shadow" value="Sim" />
+                <button type="button" class="btn btn-info box-shadow" data-dismiss="modal">Não</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@model ParkingHere.Dominio.Estacionamento
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <h3>Editar Estacionamento</h3>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Vagas para Carros", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumeroVagas, new { htmlAttributes = new { @class = "form-control tamanho-form" } })
+                @Html.ValidationMessageFor(model => model.NumeroVagas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Vagas para Motos", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumeroVagasMoto, new { htmlAttributes = new { @class = "form-control box-shadow tamanho-form" } })
+                @Html.ValidationMessageFor(model => model.NumeroVagasMoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Vagas PcD", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumeroVagasDef, new { htmlAttributes = new { @class = "form-control box-shadow tamanho-form" } })
+                @Html.ValidationMessageFor(model => model.NumeroVagasDef, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-4">
+                <input type="submit" value="Confirmar" class="btn btn-success box-shadow" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-12">
+    @Html.ActionLink("Voltar", "Configuracao", new { }, new { @class = "btn btn-primary box-shadow" })
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

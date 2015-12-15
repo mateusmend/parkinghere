@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingHere", "ParkingHere\ParkingHere.csproj", "{60C0B44D-20A0-4E3F-ADAB-AF108BE2C360}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingHere.Dominio", "ParkingHere.Dominio\ParkingHere.Dominio.csproj", "{BB01647E-8290-40E4-8A7C-5233864A941D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingHere.ORM", "ParkingHere.ORM\ParkingHere.ORM.csproj", "{67161994-5528-46A8-B78D-B06D87624144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingHere.Web.UI", "ParkingHere.Web.UI\ParkingHere.Web.UI.csproj", "{B4377456-7B6D-4D17-AD65-754A55BC1892}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingHere.BO", "ParkingHere.BO\ParkingHere.BO.csproj", "{3E30B348-0956-499F-9913-747AC803C4E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingHere.Test", "ParkingHere.Test\ParkingHere.Test.csproj", "{427A35B5-ED1B-4E38-928B-ED298E7FEC0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60C0B44D-20A0-4E3F-ADAB-AF108BE2C360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C0B44D-20A0-4E3F-ADAB-AF108BE2C360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C0B44D-20A0-4E3F-ADAB-AF108BE2C360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C0B44D-20A0-4E3F-ADAB-AF108BE2C360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB01647E-8290-40E4-8A7C-5233864A941D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB01647E-8290-40E4-8A7C-5233864A941D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB01647E-8290-40E4-8A7C-5233864A941D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB01647E-8290-40E4-8A7C-5233864A941D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67161994-5528-46A8-B78D-B06D87624144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67161994-5528-46A8-B78D-B06D87624144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67161994-5528-46A8-B78D-B06D87624144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67161994-5528-46A8-B78D-B06D87624144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4377456-7B6D-4D17-AD65-754A55BC1892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4377456-7B6D-4D17-AD65-754A55BC1892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4377456-7B6D-4D17-AD65-754A55BC1892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4377456-7B6D-4D17-AD65-754A55BC1892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E30B348-0956-499F-9913-747AC803C4E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E30B348-0956-499F-9913-747AC803C4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E30B348-0956-499F-9913-747AC803C4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E30B348-0956-499F-9913-747AC803C4E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{427A35B5-ED1B-4E38-928B-ED298E7FEC0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{427A35B5-ED1B-4E38-928B-ED298E7FEC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{427A35B5-ED1B-4E38-928B-ED298E7FEC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{427A35B5-ED1B-4E38-928B-ED298E7FEC0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://trainee2015grupo03.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ParkingHere\\ParkingHere.csproj
+		SccProjectName1 = ParkingHere
+		SccLocalPath1 = ParkingHere
+		SccProjectUniqueName2 = ParkingHere.Dominio\\ParkingHere.Dominio.csproj
+		SccProjectName2 = ParkingHere.Dominio
+		SccLocalPath2 = ParkingHere.Dominio
+		SccProjectUniqueName3 = ParkingHere.ORM\\ParkingHere.ORM.csproj
+		SccProjectName3 = ParkingHere.ORM
+		SccLocalPath3 = ParkingHere.ORM
+		SccProjectUniqueName4 = ParkingHere.Web.UI\\ParkingHere.Web.UI.csproj
+		SccProjectName4 = ParkingHere.Web.UI
+		SccLocalPath4 = ParkingHere.Web.UI
+		SccProjectUniqueName5 = ParkingHere.BO\\ParkingHere.BO.csproj
+		SccProjectName5 = ParkingHere.BO
+		SccLocalPath5 = ParkingHere.BO
+		SccProjectUniqueName6 = ParkingHere.Test\\ParkingHere.Test.csproj
+		SccProjectName6 = ParkingHere.Test
+		SccLocalPath6 = ParkingHere.Test
+	EndGlobalSection
+EndGlobal

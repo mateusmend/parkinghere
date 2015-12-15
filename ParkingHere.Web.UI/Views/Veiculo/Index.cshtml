@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ParkingHere.Dominio.Veiculo>
+
+@{
+    ViewBag.Title = " ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <h2>Listagem de Ocupação</h2>
+</div>
+
+<div class="col-md-12">
+    <h3 id="titulo-filtro">Filtar por:</h3>
+    <div class="dropdown">
+        <select class="btn btn-default dropdown-toggle box-shadow" name="Tipo" id="dropdownlistar" data_toggle="tooltip" data_placement="top" title="Selecione uma opção de filtro">
+            <option>Selecione...</option>
+            <option value="0">Todos</option>
+            <option value="1">Carro</option>
+            <option value="2">Moto</option>
+            <option value="3">PcD</option>
+        </select>
+</div>
+</div>
+
+<div class="col-md-12">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Endereço")
+            </th>
+            <th>
+                @Html.DisplayName("Tipo de Vaga")
+            </th>
+            <th>
+                @Html.DisplayName("Placa")
+            </th>
+            <th>
+                @Html.DisplayName("Tipo de Veículo")
+            </th>
+            <th>
+                @Html.DisplayName("Data")
+            </th>
+            <th>
+                @Html.DisplayName("Hora Inicial")
+            </th>
+            <th></th>
+        </tr>
+
+            <tbody id="insert">
+     
+            </tbody>            
+    </table>
+</div>
+
+<div class="col-md-12">
+    <span id="lista-veiculos" class="alert alert-danger">
+        Nenhuma vaga ocupada!
+    </span> 
+</div>
+
+<br />
+
+<div class="col-md-12">
+    @Html.ActionLink("Voltar", "Index", "Estacionamento", new { }, new { @class = "btn btn-primary box-shadow" })
+</div>

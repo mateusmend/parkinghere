@@ -1,0 +1,147 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title Parking Here</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css " />
+    <link rel="shortcut icon" href="~/Img/logo.ico">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+
+<body>
+    <div>
+        <img class="logo" src="~/Img/logo.png" />
+    </div>
+    <div class="container" id="wrapper">
+        @Html.ActionLink("Home", "CriarEstacionamento", "Estacionamento", new { area = "" }, new { style = "color:white" })
+        <div class="col-lg-12">
+            @RenderBody()
+        </div>
+        @*<div class="col-md-12">
+            <br />
+            <footer class="footer">
+                <p>&copy; @DateTime.Now - Parking Here</p>
+            </footer>
+        </div>*@
+    </div>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var params = {
+                url: "/Estacionamento/ValidarEstacionamento",
+                method: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            }
+            var request = $.ajax(params)
+
+            request.done(function (data) {
+                debugger;
+                if (data.Id >= 1) {
+                    $("#btn-voltar").show();
+                    $("#alr-estacionamento").show();
+                    $(".form-horizontal").hide();
+                } else {
+
+                }
+            })
+        })
+    </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var trigger = $('.hamburger'),
+                    overlay = $('.overlay'),
+                   isClosed = false;
+
+                function buttonSwitch() {
+
+                    if (isClosed === true) {
+                        overlay.hide();
+                        trigger.removeClass('is-open');
+                        trigger.addClass('is-closed');
+                        isClosed = false;
+                    } else {
+                        overlay.show();
+                        trigger.removeClass('is-closed');
+                        trigger.addClass('is-open');
+                        isClosed = true;
+                    }
+                }
+
+                trigger.click(function () {
+                    buttonSwitch();
+                });
+
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $('#wrapper').toggleClass('toggled');
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                
+                 $("#NumeroVagas").on("blur", function () {
+                     var carro = $("#NumeroVagas").val();
+                     if (carro <= 0) {
+                            $(".form-horizontal").find("input[type=submit]").prop("disabled", true);
+                        }
+                        else {
+                            $(".form-horizontal").find("input[type=submit]").prop("disabled", false);
+                        }
+                  })
+                $("#Placa").on("focus", function () {
+                    $("#Placa").mask("aaa-9999")
+                })
+                $("#Placa").on("blur", function () {
+
+                    var params = {
+                        url: "/Veiculo/ValidarPlacaDuplicada",
+                        method: "GET",
+                        data: { Placa: $(this).val() },
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8"
+                    }
+
+                    var request = $.ajax(params);
+
+                    request.done(function (data) {
+                        if (data.Id > 0) {
+                            $(".form-group").find("input[type=submit]").prop("disabled", true);
+                            $("#placaErroMensagem").show();
+                            $("#Placa").focus();
+                        } else {
+                            $(".form-group").find("input[type=submit]").prop("disabled", false);
+                            $("#placaErroMensagem").hide();
+                        }
+                    });
+                });
+                var params = {
+                    url: "/Veiculo/ValidarLista",
+                    method: "POST",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8"
+                }
+
+                var request = $.ajax(params);
+
+                request.done(function (data) {
+                    if (data.Id <= 0) {
+
+                       
+                        $("#lista-veiculos").show();
+                        
+                        $(".table").hide();
+                    }
+                    else { }
+                });
+            });
+        </script>
+</body>
+</html>

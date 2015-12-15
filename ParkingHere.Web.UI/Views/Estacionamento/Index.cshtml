@@ -1,0 +1,52 @@
+﻿@model ParkingHere.Dominio.Estacionamento
+
+@{
+    ViewBag.Title = "";
+}
+
+<br />
+
+@if (TempData["VeiculoAdicionado"] != null)
+{
+    <div class="alert alert-success col-md-12" id="msg-sucess" role="alert">@TempData["VeiculoAdicionado"].ToString()</div>
+}
+
+@if (TempData["VeiculoRemovido"] != null)
+{
+    <div class="alert alert-success col-md-12" id="msg-sucess" role="alert">@TempData["VeiculoRemovido"].ToString()</div>
+}
+
+@if (TempData["EstacionamentoCriado"] != null)
+{
+    <div class="alert alert-success col-md-12" id="msg-sucess" role="alert">@TempData["EstacionamentoCriado"].ToString()</div>
+}
+
+@if (TempData["EstacionamentoEditado"] != null)
+{
+    <div class="alert alert-success col-md-12" id="msg-sucess" role="alert">@TempData["EstacionamentoEditado"].ToString()</div>
+}
+
+<div class="titulo col-md-12">
+    <h2>@Model.Nome</h2>
+</div>
+    <div class="row">
+        @foreach (var item in Model.Vagas)
+        {
+            <div class="col-md-10 espaco vagas-caixa box-shadow">
+                <div class="endereco-vaga">
+                    @item.Endereco
+                </div>
+                <img style="opacity: 0.20;" src="~/Img/(@item.Tipo.ToString()).png" />
+                @if (item.Livre)
+                {
+                     @Html.ActionLink("Ocupado", "Delete", "Veiculo", new { vagaId = item.Id }, new { @class = "label label-danger botao-vaga", style = "color : white;", data_toggle = "tooltip", data_placement = "top", title = "Vaga ocupada! Clique para Desocupar" })
+                }
+                else
+                {
+                    @Html.ActionLink("Disponível", "Create", "Veiculo", new { vagaId = item.Id }, new { @class = "label label-success botao-vaga", style = "color : white;", data_toggle = "tooltip", data_placement = "top", title = "Vaga disponível! Clique para Ocupar" })
+                }
+            </div>
+        }
+    </div>
+
+

@@ -1,0 +1,65 @@
+﻿@model ParkingHere.Dominio.Veiculo
+
+@{
+    ViewBag.Title = " ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["ErroRemocao"] != null)
+{
+    <div class="alert alert-danger" role="alert">@TempData["ErroRemocao"].ToString()</div>
+}
+
+<div class="col-md-12">
+    <h3>Desocupar Vaga</h3>
+</div>
+<div class="col-md-12">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Endereço")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vaga.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Placa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Placa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+        <dt>
+            @Html.DisplayName("Permanência")
+        </dt>
+
+        <dd>
+            @Model.DataFinal.ToLongTimeString()
+        </dd>
+    </dl>
+</div>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirmar" class="btn btn-success box-shadow" style="margin-left: 130px;" />
+        </div>
+    }
+</div>
+
+<br />    
+
+<div class="col-md-12">
+    @Html.ActionLink("Voltar", "Index", "Estacionamento", new { }, new { @class = "btn btn-primary box-shadow" })
+</div>

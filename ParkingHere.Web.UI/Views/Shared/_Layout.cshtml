@@ -1,0 +1,208 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title Parking Here</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/style.css">  
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css " />
+    <link rel="shortcut icon" href="~/Img/logo.ico">
+</head>
+
+<body>
+    <div id="wrapper" class="">
+        <div class="overlay" style="display: none;"></div>
+        <img class="logo col-md-12" src="~/Img/logo.png" />
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a>
+                        Parking Here
+                    </a>
+                </li>             
+                <li>
+                    <img class="imgs-menu" src="~/Img/list.png" />
+                    @Html.ActionLink("Listar", "Index", "Veiculo", new { area = "" }, new { style = "color:white" })
+                </li>
+                <li>
+                    <img class="imgs-menu" src="~/Img/config.png" />
+                     @Html.ActionLink("Configurações", "Configuracao", "Estacionamento", new { }, new { style = "color:white" })
+                </li>
+            </ul>
+        </nav>
+            <div class="container col-md-10">
+                    <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                        <span class="hamb-top"></span>
+                        <span class="hamb-middle"></span>
+                        <span class="hamb-bottom"></span>
+                    </button>
+            </div>
+        <div class="container" id="wrapper">
+            <div class="col-lg-12">
+                    @RenderBody()
+            </div>
+            @*<div class="col-md-12">
+                <br />
+                <footer class="footer">
+                    <p>&copy; @DateTime.Now - Parking Here</p>
+                </footer>
+            </div>*@
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.maskedinput.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery.tmpl.js"></script>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                var trigger = $('.hamburger'),
+                    overlay = $('.overlay'),
+                   isClosed = false;
+
+                function buttonSwitch() {
+
+                    if (isClosed === true) {
+                        overlay.hide();
+                        trigger.removeClass('is-open');
+                        trigger.addClass('is-closed');
+                        isClosed = false;
+                    } else {
+                        overlay.show();
+                        trigger.removeClass('is-closed');
+                        trigger.addClass('is-open');
+                        isClosed = true;
+                    }
+                }
+
+                trigger.click(function () {
+                    buttonSwitch();
+                });
+
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $('#wrapper').toggleClass('toggled');
+                });
+            });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#msg-sucess", function () {
+                $("#msg-sucess").fadeOut(3000);
+            })
+
+            $("#NumeroVagas").on("blur", function () {
+                var num = $(this).val();
+                if(num <= 0) {
+                    $(".form-group").find("input[type=submit]").prop("disabled", true);
+                }
+                else {
+                    $(".form-group").find("input[type=submit]").prop("disabled", false);
+                }
+            })
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+                $("#Placa").on("focus", function () {
+                    $("#Placa").mask("aaa-9999")
+                })
+                $("#Placa").on("blur", function () {
+
+                    var params = {
+                        url: "/Veiculo/ValidarPlacaDuplicada",
+                        method: "GET",
+                        data: { Placa: $(this).val() },
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8"
+                    }
+
+                    var request = $.ajax(params);
+
+                    request.done(function (data) {
+                        if (data.Id > 0) {
+                            $(".form-group").find("input[type=submit]").prop("disabled", true);
+                            $("#placaErroMensagem").show();
+                            $("#Placa").focus();
+                        }
+                        else {
+                            $(".form-group").find("input[type=submit]").prop("disabled", false);
+                            $("#placaErroMensagem").hide();
+                        }
+                    });
+                });
+                var params = {
+                    url: "/Veiculo/ValidarLista",
+                    method: "POST",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8"
+                }
+
+                var request = $.ajax(params);
+
+                request.done(function (data) {
+                    if (data.Id <= 0) {
+                        $("#lista-veiculos").show();
+                        $(".table").hide();
+                        $("#titulo-filtro").hide();
+                        $(".dropdown").hide();
+                    }
+                    else { }
+                });
+
+
+                $("#confirmarExclusao").on("click", function() {
+                    var params = {
+                        url: "/Estacionamento/deletar",
+                        method: "POST",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        crossDomain: true,
+                        success: function (data) {
+                            window.location.href = data;
+                        }
+                    }
+
+                    var request = $.ajax(params);
+                })
+            });
+    </script>
+    <script>
+
+        $("#dropdownlistar").on("change", function () {
+            
+            $("#insert").html(" ")
+            var insert = "<tr><td>${Endereco}</td><td>{{if TipoV == 1 }}Carro{{else TipoV == 2}}Moto{{else}}PcD{{/if}}</td><td>${Placa}</td><td>${TipoVe}</td><td>${DataAt}</td><td>${HoraInicial}</td></tr>"
+            var request = $.ajax({
+                url: "/Veiculo/Filtro",
+                method: "GET",
+                data: { filtragem: $(this).val() },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8"
+            });
+            
+            request.done(function (data) {
+                if (data.result != 0) {
+                    $("tbody").show();
+                    $("#lista-veiculos").hide();
+                    $.tmpl(insert, data.result)
+                 .appendTo("#insert");
+                } else {
+                    $("#lista-veiculos").show();
+                    $("tbody").hide();
+                }
+                
+            })
+        })
+       
+    </script>
+    
+    @*https://github.com/BorisMoore/jquery-tmpl
+    http://tableless.com.br/templates-e-jquery-parte-1/*@
+
+</body>
+</html>
